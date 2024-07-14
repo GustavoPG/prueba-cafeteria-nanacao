@@ -26,15 +26,15 @@ describe("Operaciones CRUD de cafes", () => {
             .post("/cafes")
             .send(newData);
         expect(response.status).toBe(201);
-        expect(response.body).toEqual(expect.arrayContaining([expect.objectContaining(nuevoCafe)]));
+        expect(response.body).toEqual(expect.arrayContaining([expect.objectContaining(newData)]));
     });
 
     // Test para la ruta PUT /cafes/
     test("La ruta PUT /cafes devuelve un status code 400 si el id en los parámetros es diferente al id en el payload", async () => {
-        const dataUpdate = { id: 5, nombre: "Espresso coffee" };
+        const dataToUpdate = { id: 5, nombre: "Espresso coffee" };
         const response = await request(server)
             .put("/cafes/4")
-            .send(dataUpdate);
+            .send(dataToUpdate);
         expect(response.status).toBe(400);
     });
 });
